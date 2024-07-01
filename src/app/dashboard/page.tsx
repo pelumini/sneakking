@@ -23,104 +23,77 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { MoreHorizontal, PlusCircle, UserIcon } from "lucide-react";
+import {
+  MoreHorizontal,
+  PartyPopper,
+  PlusCircle,
+  PoundSterling,
+  ShoppingCart,
+  User2,
+  UserIcon,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 import prisma from "@/lib/prisma";
 
-async function getData() {
-  const data = await prisma.product.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-
-  return data;
-}
-
-const ProductsRoute = async () => {
-  noStore();
-  const data = await getData();
-
+const Dashboard = async () => {
   return (
     <>
-      <div className="flex items-center justify-end">
-        <Button asChild className="flex items-center gap-x-2">
-          <Link href="/dashboard/products/create">
-            <PlusCircle className="w-3.5 h-3.5" />
-            <span>Add Product</span>
-          </Link>
-        </Button>
+      <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle>Total Revenue</CardTitle>
+            <PoundSterling className="h-4 w-4 text-green-500" />
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold">£100.00</p>
+            <p className="text-xs text-muted-foreground">
+              Based on 100 Charges
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle>Total Sales</CardTitle>
+            <ShoppingCart className="h-4 w-4 text-blue-500" />
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold">+50</p>
+            <p className="text-xs text-muted-foreground">
+              Total sales on SneakKing
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle>Total Products</CardTitle>
+            <PartyPopper className="h-4 w-4 text-indigo-500" />
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold">37</p>
+            <p className="text-xs text-muted-foreground">
+              Total products created
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle>Total Users</CardTitle>
+            <User2 className="h-4 w-4 text-orange-500" />
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl font-bold">120</p>
+            <p className="text-xs text-muted-foreground">
+              Total Users Signed Up
+            </p>
+          </CardContent>
+        </Card>
       </div>
-      <Card className="mt-5">
-        <CardHeader>
-          <CardTitle>Products</CardTitle>
-          <CardDescription>
-            Manage your products and view their sales performance
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Image</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead className="text-end">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {data.map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell>
-                    <Image
-                      alt="Product Image"
-                      src={item.images[0]}
-                      height={64}
-                      width={64}
-                      className="rounded-md object-cover h-16 w-16"
-                    />
-                  </TableCell>
-                  <TableCell>{item.name}</TableCell>
-                  <TableCell>{item.status}</TableCell>
-                  <TableCell>${item.price}</TableCell>
-                  <TableCell>
-                    {new Intl.DateTimeFormat("en-US").format(item.createdAt)}
-                  </TableCell>
-                  <TableCell className="text-end">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button size="icon" variant="ghost">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem asChild>
-                          <Link href={`/dashboard/products/${item.id}`}>
-                            Edit
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <Link href={`/dashboard/products/${item.id}/delete`}>
-                            Delete
-                          </Link>
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+
+      <div className=""></div>
     </>
   );
 };
 
-export default ProductsRoute;
+export default Dashboard;

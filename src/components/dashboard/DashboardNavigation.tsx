@@ -18,13 +18,14 @@ const links = [
     href: "/dashboard/products",
   },
   {
-    name: "Banner Picture",
-    href: "/dashboard/banner",
+    name: "Cagetories",
+    href: "/dashboard/categories",
   },
 ];
 
 const DashboardNavigation = () => {
   const pathname = usePathname();
+
   return (
     <>
       {links.map((link) => (
