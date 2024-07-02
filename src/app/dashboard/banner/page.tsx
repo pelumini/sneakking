@@ -41,6 +41,7 @@ async function getData() {
 const BannerRoute = async () => {
   noStore();
   const data = await getData();
+
   return (
     <>
       <div className="flex items-center justify-end">

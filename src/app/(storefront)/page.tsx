@@ -1,15 +1,15 @@
-// import { CategoriesSelection } from "../components/storefront/CategorySelection";
-// import { FeaturedProducts } from "../components/storefront/FeaturedProducts";
-// import { Hero } from "../components/storefront/Hero";
-// import { Navbar } from "../components/storefront/Navbar";
+import { CategoriesSelection } from "@/components/storefront/CategorySelection";
+import { FeaturedProducts } from "@/components/storefront/FeaturedProducts";
+import { Hero } from "@/components/storefront/Hero";
 
-export default function IndexPage() {
+const IndexPage = () => {
   return (
     <div>
-      {/* <Hero />
+      <Hero />
       <CategoriesSelection />
-      <FeaturedProducts /> */}
-      Welcome to index page
+      <FeaturedProducts />
     </div>
   );
-}
+};
+
+export default IndexPage;
