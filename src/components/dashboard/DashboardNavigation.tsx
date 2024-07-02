@@ -18,8 +18,8 @@ const links = [
     href: "/dashboard/products",
   },
   {
-    name: "Cagetories",
-    href: "/dashboard/categories",
+    name: "Banner Picture",
+    href: "/dashboard/banner",
   },
 ];
 

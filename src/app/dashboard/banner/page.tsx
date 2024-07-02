@@ -23,13 +23,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { MoreHorizontal, PlusCircle, UserIcon } from "lucide-react";
+import { MoreHorizontal, PlusCircle, User2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 
 async function getData() {
-  const data = await prisma.product.findMany({
+  const data = await prisma.banner.findMany({
     orderBy: {
       createdAt: "desc",
     },
@@ -38,57 +38,48 @@ async function getData() {
   return data;
 }
 
-const ProductsRoute = async () => {
+const BannerRoute = async () => {
   noStore();
   const data = await getData();
-
   return (
     <>
       <div className="flex items-center justify-end">
-        <Button asChild className="flex items-center gap-x-2">
-          <Link href="/dashboard/products/create">
-            <PlusCircle className="w-3.5 h-3.5" />
-            <span>Add Product</span>
+        <Button asChild className="flex gap-x-2">
+          <Link href="/dashboard/banner/create">
+            <PlusCircle className="h-3.5 w-3.5" />
+            <span>Add Banner</span>
           </Link>
         </Button>
       </div>
+
       <Card className="mt-5">
         <CardHeader>
-          <CardTitle>Products</CardTitle>
-          <CardDescription>
-            Manage your products and view their sales performance
-          </CardDescription>
+          <CardTitle>Banners</CardTitle>
+          <CardDescription>Manage your banners</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Image</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead>Date</TableHead>
+                <TableHead>Title</TableHead>
                 <TableHead className="text-end">Actions</TableHead>
               </TableRow>
             </TableHeader>
+
             <TableBody>
               {data.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell>
                     <Image
                       alt="Product Image"
-                      src={item.images[0]}
-                      height={64}
+                      src={item.imageString}
                       width={64}
-                      className="rounded-md object-cover h-16 w-16"
+                      height={64}
+                      className="rounded-lg object-cover h-16 w-16"
                     />
                   </TableCell>
-                  <TableCell>{item.name}</TableCell>
-                  <TableCell>{item.status}</TableCell>
-                  <TableCell>£{item.price}</TableCell>
-                  <TableCell>
-                    {new Intl.DateTimeFormat("en-GB").format(item.createdAt)}
-                  </TableCell>
+                  <TableCell className="font-medium">{item.title}</TableCell>
                   <TableCell className="text-end">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -99,13 +90,9 @@ const ProductsRoute = async () => {
                       <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
+
                         <DropdownMenuItem asChild>
-                          <Link href={`/dashboard/products/${item.id}`}>
-                            Edit
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <Link href={`/dashboard/products/${item.id}/delete`}>
+                          <Link href={`/dashboard/banner/${item.id}/delete`}>
                             Delete
                           </Link>
                         </DropdownMenuItem>
@@ -122,4 +109,4 @@ const ProductsRoute = async () => {
   );
 };
 
-export default ProductsRoute;
+export default BannerRoute;
