@@ -1,8 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import all from "@/public/all.jpeg";
-import men from "@/public/men.jpeg";
-import women from "@/public/women.jpeg";
 
 export const CategoriesSelection = () => {
   return (
@@ -23,7 +20,9 @@ export const CategoriesSelection = () => {
       <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8">
         <div className="group aspect-w-2 aspect-h-1 rounded-xl overflow-hidden sm:aspect-w-1 sm:row-span-2">
           <Image
-            src={all}
+            src={"/all.jpeg"}
+            width={300}
+            height={300}
             alt="All Products Image"
             className="object-cover object-center "
           />
@@ -38,7 +37,9 @@ export const CategoriesSelection = () => {
 
         <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full">
           <Image
-            src={men}
+            src={"/men.jpeg"}
+            width={300}
+            height={300}
             alt="Products for men Image"
             className="object-bottom object-cover sm:absolute sm:inset-0 sm:w-full sm:h-full"
           />
@@ -53,7 +54,9 @@ export const CategoriesSelection = () => {
 
         <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full">
           <Image
-            src={women}
+            src={"/women.jpeg"}
+            width={300}
+            height={300}
             alt="Women product image"
             className="object-bottom object-cover sm:absolute sm:inset-0 sm:w-full sm:h-full"
           />

@@ -1,6 +1,6 @@
-import { Footer } from "@/components/storefront/Footer";
-import { Navbar } from "@/components/storefront/Navbar";
+import { Footer } from "@/app/(storefront)/_components/Footer";
 import { type ReactNode } from "react";
+import { Navbar } from "./_components/Navbar";
 
 const StoreFrontLayout = ({ children }: { children: ReactNode }) => {
   return (

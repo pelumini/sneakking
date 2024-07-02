@@ -1,6 +1,6 @@
-import { CategoriesSelection } from "@/components/storefront/CategorySelection";
-import { FeaturedProducts } from "@/components/storefront/FeaturedProducts";
-import { Hero } from "@/components/storefront/Hero";
+import { CategoriesSelection } from "@/app/(storefront)/_components/CategorySelection";
+import { FeaturedProducts } from "@/app/(storefront)/_components/FeaturedProducts";
+import { Hero } from "@/app/(storefront)/_components/Hero";
 
 const IndexPage = () => {
   return (

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { NavbarLinks } from "./NavbarLinks";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ShoppingBagIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,14 +7,16 @@ import {
   RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { Cart } from "@/lib/interfaces";
-import { UserDropdown } from "./UserDropdown";
 import { redis } from "@/lib/redis";
+import { UserDropdown } from "@/app/(storefront)/_components/UserDropdown";
+import { NavbarLinks } from "@/app/(storefront)/_components/NavbarLinks";
 
 export const Navbar = async () => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  const cart: Cart | null = await redis.get(`cart-${user?.id}`);
+  //const cart: Cart | null = await redis.get(`cart-${user?.id}`);
+  const cart: Cart | null = { userId: "", items: [] };
 
   const total = cart?.items.reduce((sum, item) => sum + item.quantity, 0) || 0;
 
@@ -24,7 +25,7 @@ export const Navbar = async () => {
       <div className="flex items-center">
         <Link href="/">
           <h1 className="text-black font-bold text-xl lg:text-3xl">
-            Shoe<span className="text-primary">Marshal</span>
+            Sneak<span className="text-primary">King</span>
           </h1>
         </Link>
         <NavbarLinks />
