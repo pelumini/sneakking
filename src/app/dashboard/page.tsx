@@ -36,6 +36,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 import prisma from "@/lib/prisma";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Dashboard = async () => {
   return (
@@ -91,7 +92,72 @@ const Dashboard = async () => {
         </Card>
       </div>
 
-      <div className=""></div>
+      <div className="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3 mt-10">
+        <Card className="xl:col-span-2">
+          <CardHeader>
+            <CardTitle>Transactions</CardTitle>
+            <CardDescription>
+              Recent transactions from your store
+            </CardDescription>
+          </CardHeader>
+        </Card>
+
+        <Card>
+          <CardHeader className="">
+            <CardTitle>Recent Sales</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-8">
+            <div className="flex items-center gap-4">
+              <Avatar className="hidden sm:flex h-9 w-9">
+                <AvatarFallback>PE</AvatarFallback>
+              </Avatar>
+              <div className="grid gap-1">
+                <p className="text-sm font-medium">Admin</p>
+                <p className="text-sm text-muted-foreground">
+                  admin@sneakking.com
+                </p>
+              </div>
+              <p className="ml-auto font-medium">£1,999.00</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <Avatar className="hidden sm:flex h-9 w-9">
+                <AvatarFallback>PE</AvatarFallback>
+              </Avatar>
+              <div className="grid gap-1">
+                <p className="text-sm font-medium">Admin</p>
+                <p className="text-sm text-muted-foreground">
+                  admin@sneakking.com
+                </p>
+              </div>
+              <p className="ml-auto font-medium">£1,999.00</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <Avatar className="hidden sm:flex h-9 w-9">
+                <AvatarFallback>PE</AvatarFallback>
+              </Avatar>
+              <div className="grid gap-1">
+                <p className="text-sm font-medium">Admin</p>
+                <p className="text-sm text-muted-foreground">
+                  admin@sneakking.com
+                </p>
+              </div>
+              <p className="ml-auto font-medium">£1,999.00</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <Avatar className="hidden sm:flex h-9 w-9">
+                <AvatarFallback>PE</AvatarFallback>
+              </Avatar>
+              <div className="grid gap-1">
+                <p className="text-sm font-medium">Admin</p>
+                <p className="text-sm text-muted-foreground">
+                  admin@sneakking.com
+                </p>
+              </div>
+              <p className="ml-auto font-medium">£1,999.00</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </>
   );
 };

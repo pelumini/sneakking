@@ -32,7 +32,7 @@ const DashboardLayout = async ({
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if (!user || user.email !== "pelumini@gmail.com") {
+  if (!user || user.email !== process.env.ADMIN_EMAIL) {
     return redirect("/");
   }
 
