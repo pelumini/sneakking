@@ -42,6 +42,7 @@ async function getData() {
 const OrdersPage = async () => {
   noStore();
   const data = await getData();
+
   return (
     <Card>
       <CardHeader className="px-7">
